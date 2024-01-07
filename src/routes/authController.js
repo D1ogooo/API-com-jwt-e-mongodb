@@ -16,7 +16,7 @@ router.post('/signup', async (req, res) => {
   throw new AppError("As senhas declaradas não coincidem")
  }
  
- const checkUserExists = await User.findOne({ email: `${email}` })
+ const checkUserExists = await User.findOne({ email: email })
 
  if(checkUserExists) {
   throw new AppError("O email declarado já existe.")
