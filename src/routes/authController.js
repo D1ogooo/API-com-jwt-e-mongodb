@@ -39,7 +39,7 @@ router.post('/signin', async (req, res) => {
   throw new AppError("Todos os campos devem ser preenchidos.")
  }
  
- const checkUserExists = await User.findOne({email: `${email}`});
+ const checkUserExists = await User.findOne({email: email});
  if(!checkUserExists) {
   throw new AppError("Credenciais inválidas");
  }
