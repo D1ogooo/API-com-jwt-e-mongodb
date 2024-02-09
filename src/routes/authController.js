@@ -45,7 +45,7 @@ router.post('/signin', async (req, res) => {
  }
 
  const validPassword = await compare(password, checkUserExists.password)
- console.log(validPassword)
+
  if(!validPassword) {
   throw new AppError("Credenciais inválidas.");
  }
