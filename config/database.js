@@ -1,18 +1,18 @@
-const { MongoClient } = require("mongodb");
-require('dotenv').config();
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+dotenv.config();
+
+main().catch(error => console.log(error));
 
 async function main() {
+  await mongoose.connect(`mongodb+srv://diiogomarsalcosta:${process.env.PASSWORD_USER}@cluster0.blhhruo.mongodb.net/?retryWrites=true&w=majority`)
   try {
-    const password = process.env.MONGODB_PASSWORD; // qualquer variavel de ambiente que você for botar
-    const connectionString = `mongodb+srv://diiogomarsalcosta:${process.env.PASSWORD_USER}@cluster0.nayh0ez.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-    const client = new MongoClient(connectionString);
-    await client.connect()
     console.log("Conectado ao banco de dados")
   } catch (error) {
-    console.log(error.stack);
+    console.log("Falha ao se conectar com o banco de dados")
   }
 }
 
 
-
-module.exports = main;
+module.exports = mongoose
